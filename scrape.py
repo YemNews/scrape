@@ -2,18 +2,18 @@ import newspaper
 import csv
 import requests
 import logging
-import time
 from datetime import timedelta
 from gnews import get_data
 # from simplescraper import simple_scrape
 
-logging.basicConfig(filename="mylogs.log",
-                    format='%(asctime)s %(message)s',
-                    filemode='w')
-logger = logging.getLogger()
-logger.setLevel(logging.DEBUG)
+
 
 def adv_scrape(data):
+    logging.basicConfig(filename="mylogs.log",
+                    format='%(asctime)s %(message)s',
+                    filemode='w')
+    logger = logging.getLogger()
+    logger.setLevel(logging.DEBUG)
     dump = {}
     with open ('scraper_requests_adv.csv', 'w+') as csvfile:
         csvwriter = csv.writer(csvfile)
@@ -44,7 +44,7 @@ def adv_scrape(data):
             dump[f'article {i}'] = content
             logger.info(f'Row written')
             i += 1
-    return dump
+    return str(dump)
 # def basic_scrape(data):
 #     with open ('printing_packaging.csv','w+') as csvfile:
 #         csvwriter = csv.writer(csvfile)
@@ -72,11 +72,11 @@ def get_final_endpoint(link):
     r = requests.get(link)
     return r.url 
 
-start = time.time()
-dump = adv_scrape(get_data("Generative AI"))
-end = time.time()
+# start = time.time()
+# dump = adv_scrape(get_data("Generative AI"))
+# end = time.time()
 
-print(str(timedelta(seconds=end-start)))
+# print(str(timedelta(seconds=end-start)))
 
-with open ('dict.txt', 'w+') as f:
-    f.write(str(dump))
+# with open ('dict.txt', 'w+') as f:
+#     f.write(str(dump))

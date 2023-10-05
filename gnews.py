@@ -3,7 +3,7 @@ from langdetect import detect
 
 def get_data(topic):
     gn = GoogleNews()
-    s = gn.search(topic, when='24h')
+    s = gn.search(topic, when='1h')
     data = []
 
     for entry in s["entries"]:
