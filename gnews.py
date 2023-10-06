@@ -1,9 +1,9 @@
 from pygooglenews import GoogleNews
 from langdetect import detect
 
-def get_data(topic):
+def get_data(topic, interest):
     gn = GoogleNews()
-    s = gn.search(topic, when='1h')
+    s = gn.search(f'{topic} {interest}', when='1h')
     data = []
 
     for entry in s["entries"]:
@@ -18,3 +18,4 @@ def get_data(topic):
     return data
 
 # print(get_data("Generative AI"))
+

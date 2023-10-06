@@ -14,7 +14,7 @@ def adv_scrape(data):
                     filemode='w')
     logger = logging.getLogger()
     logger.setLevel(logging.DEBUG)
-    dump = {}
+    json_response = []
     with open ('scraper_requests_adv.csv', 'w+') as csvfile:
         csvwriter = csv.writer(csvfile)
         fields = ['title','link','published','source','text']
@@ -41,10 +41,20 @@ def adv_scrape(data):
             }
             content = [item["title"], endpoint, item["published"], item["source"], article["text"]]
             csvwriter.writerow(content)
-            dump[f'article {i}'] = content
+            # dump[f'article {i}'] = content
+
+            curr_article = {
+            "title" : item["title"],
+            "link": endpoint,
+            "published": item["published"],
+            "source": item["source"],
+            "text": article["text"]
+            }
+
+            json_response.append(curr_article)
             logger.info(f'Row written')
             i += 1
-    return str(dump)
+    return json_response
 # def basic_scrape(data):
 #     with open ('printing_packaging.csv','w+') as csvfile:
 #         csvwriter = csv.writer(csvfile)
