@@ -40,6 +40,3 @@ def single_scrape(link):
 def get_final_endpoint(link):
     r = requests.get(link)
     return r.url 
-
-
-# print(single_scrape('https://news.google.com/rss/articles/CBMiTGh0dHBzOi8vaGl0Y29uc3VsdGFudC5uZXQvMjAyMy8xMC8wNi9oZWFsdGhjYXJlLWFpLXBoeXNpY2lhbi1idXJub3V0LWNyaXNpcy_SAQA?oc=5'))
