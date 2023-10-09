@@ -12,7 +12,7 @@ def assign_interest(title: str, interests: list) -> int:
 
     for i in range(len(interest_embeddings)):
         curr_similarity = util.pytorch_cos_sim(interest_embeddings[i],title_embeddings)
-        print(curr_similarity)
+        # print(curr_similarity)
         if curr_similarity > max_similarity:
             max_similarity = curr_similarity
             max_similarity_index = i
