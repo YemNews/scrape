@@ -17,14 +17,6 @@ def assign_interest(title: str, interests: list) -> int:
             max_similarity = curr_similarity
             max_similarity_index = i
 
-    # print('Max similarity: ', max_similarity)
-    # print('Max similarity Index: ', max_similarity_index)
-
     return max_similarity_index
 
-
-interest = ['Generative AI','Trends','Llama','OpenAI']
-title = 'Amazon to invest $2 billion into Anthropic to take on OpenAI'
-
-print("Most relevant Interest:", interest[assign_interest(title,interest)])
 
