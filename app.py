@@ -17,10 +17,13 @@ def link_collate(topic, interest):
 def scrape():
     link = request.args.get('url')
     print(link)
-    return single_scrape(link)
+    try:
+        return single_scrape(link)
+    except TimeoutError as e:
+        return e
 
 if __name__=="__main__":
-    app.run(debug=True)
+    app.run(debug=True, threaded=True)
 
 
 # Flow
