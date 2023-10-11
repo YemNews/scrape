@@ -18,7 +18,7 @@ async def link_collate(topic, interest):
 @app.get('/scraper')
 async def scrape(url: str):
     try:
-        result = await asyncio.wait_for(single_scrape(url), timeout=5)
+        result = await asyncio.wait_for(single_scrape(url), timeout=30)
         return result
     except asyncio.TimeoutError as e:
         return 'SCRAPER TIMEOUT'

@@ -3,9 +3,8 @@ from langdetect import detect
 
 def get_data(topic, interest):
     gn = GoogleNews()
-    s = gn.search(f'{topic} {interest}', when='1h')
+    s = gn.search(f'{topic} {interest}', when='24h')
     data = []
-
     for entry in s["entries"]:
         item = {
             "title" : entry["title"],
@@ -17,5 +16,5 @@ def get_data(topic, interest):
             data.append(item)
     return data
 
-# print(get_data("Generative AI"))
+# print(get_data("Generative AI","general"))
 
