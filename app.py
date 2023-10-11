@@ -2,7 +2,6 @@ from flask import Flask, request
 from scrape import adv_scrape
 from singlescrape import single_scrape
 from gnews import get_data
-import urllib3
 
 app = Flask(__name__)
 

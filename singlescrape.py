@@ -2,8 +2,13 @@ import newspaper
 import csv
 import requests
 import logging
+import time
+from wrapt_timeout_decorator import *
 
+@timeout(30)
 def single_scrape(link):
+    # Uncomment line 11 to check if it works on your machine
+    # time.sleep(50)
     logging.basicConfig(filename="mylogs.log",
                     format='%(asctime)s %(message)s',
                     filemode='w')
@@ -40,3 +45,15 @@ def single_scrape(link):
 def get_final_endpoint(link):
     r = requests.get(link)
     return r.url 
+
+
+
+#===========SETUP AND TRY IN YOUR MACHINE==============
+# pip install wrapt_timeout_decorator (inside env)
+
+# CODE BELOW FOR CHECKING IF IT WORKS
+# if __name__ ==  '__main__':
+#     try:
+#         print(single_scrape('https://www.thehindu.com/news/international/magnitude-63-earthquake-strikes-northwestern-afghanistan/article67406480.ece'))
+#     except TimeoutError:
+#         print('TIMEOUT ERROR')
