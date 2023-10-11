@@ -1,16 +1,6 @@
 import requests
-import time
+import concurrent.futures
 from gnews import get_data
-
-def timer_decorator(func):
-    def wrapper(*args, **kwargs):
-        start_time = time.time()
-        result = func(*args, **kwargs)
-        end_time = time.time()
-        execution_time = end_time - start_time
-        print(f"{func.__name__} took {execution_time:.2f} seconds to execute")
-        return result
-    return wrapper
 
 def timed(fnc):
     from functools import wraps
@@ -27,38 +17,47 @@ def timed(fnc):
         return result
     return wrapper
 
-def quick_load(link):
+def fetch_redirect_url(link):
     try:
-        response = requests.head(link, allow_redirects=True, timeout=5)
+        response = requests.get(link, allow_redirects=True, timeout=5)
         if response.status_code == 200:
             final_url = response.url
-            print(f'Final URL: {final_url}\n')
+            return final_url
         else:
-            print("Failed to retrieve the final URL. Status code:", response.status_code)
-    except:
-        print("\nTIMEOUT")
-   
+            return f"Failed to retrieve the final URL. Status code: {response.status_code}"
+    except Exception as e:
+        return f"Failed to retrieve the final URL: {str(e)}"
+
 def load(link):
     try:
         response = requests.get(link, timeout=5)
         if response.status_code == 200:
             final_url = response.url
-            print(f'Final URL: {final_url}\n')
+            # print(f'Final URL: {final_url}\n')
         else:
             print("Failed to retrieve the final URL. Status code:", response.status_code)
     except:
         print('TIMEOUT')
 
-data = get_data("Generative AI","general")
-middle_links = [item['link'] for item in data]
+@timed
+def main():
+    data = get_data("Generative AI","general")
+    middle_links = [item['link'] for item in data]
+    with concurrent.futures.ThreadPoolExecutor(max_workers=8) as executor:
+        results = list(executor.map(fetch_redirect_url, middle_links))
+
+    for link, final_url in zip(middle_links, results):
+        # print(f"Original URL: {link}")
+        print(f"Final URL: {final_url}\n")
 
 @timed
-def get_endpoints(middle_links, function):
+def normal():
+    data = get_data("Generative AI","general")
+    middle_links = [item['link'] for item in data]
     for link in middle_links:
-        function(link)
+        load(link)
 
-print('BEFORE OPTIMIZATION:', get_endpoints(middle_links, load))
-print('AFTER OPTIMIZATION 🔥🔥🔥: ', get_endpoints(middle_links, quick_load))
-print(len(middle_links))
-
+if __name__ == "__main__":
+    main()
+    normal()
 
