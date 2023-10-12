@@ -23,7 +23,5 @@ async def scrape(url: str):
     except asyncio.TimeoutError as e:
         return 'SCRAPER TIMEOUT'
  
-
-# if __name__=="__main__":
 if __name__ == "__main__":
     uvicorn.run("appfast:app")
