@@ -49,3 +49,5 @@ async def get_final_endpoint(link):
 # Scraping that endpoint
 
 # Overall 30 seconds
+
+from newspaper import news_pool

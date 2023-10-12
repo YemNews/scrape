@@ -1,9 +1,10 @@
 from pygooglenews import GoogleNews
 from langdetect import detect
 
-def get_data(topic, interest):
+def get_data(topic, curr_interest):
     gn = GoogleNews()
-    s = gn.search(f'{topic} {interest}', when='24h')
+    negate_interests_query = 'New Regulations'
+    s = gn.search(f'{topic} {curr_interest} -Regulations', when='24h')
     data = []
     for entry in s["entries"]:
         item = {
@@ -16,5 +17,8 @@ def get_data(topic, interest):
             data.append(item)
     return data
 
-# print(get_data("Generative AI","general"))
+data = get_data("Generative AI","New Startups")
+print(len(data))
+for item in data:
+    print(item['title'])
 
