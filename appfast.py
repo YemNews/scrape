@@ -1,8 +1,10 @@
 import uvicorn
 import asyncio
-from fastapi import FastAPI, BackgroundTasks
+from fastapi import FastAPI, Query
 from gnews import get_data
 from singlescrape import single_scrape
+from similarity import assign_interest
+from typing import List
 
 app = FastAPI()
 
@@ -11,9 +13,11 @@ app = FastAPI()
 async def root():
     return {"message": "YEM Crawl and Scrape"}
 
-@app.get('/crawler/topic/{topic}/interest/{interest}')
-async def link_collate(topic, interest):
-    return get_data(topic, interest)
+
+@app.get('/crawler/queryString/{queryString}')
+async def link_collate(queryString):
+    return get_data(queryString)
+
 
 @app.get('/scraper')
 async def scrape(url: str):
@@ -22,6 +26,11 @@ async def scrape(url: str):
         return result
     except asyncio.TimeoutError as e:
         return 'SCRAPER TIMEOUT'
- 
+
+
+@app.get("/items/")
+async def get_item(title: str, interests: List[str] = Query(...)):
+    return assign_interest(title, interests)
+
 if __name__ == "__main__":
     uvicorn.run("appfast:app")
