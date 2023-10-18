@@ -37,7 +37,7 @@ def fetch_redirect_url(preprocessed_data):
 
 def main(preprocessed_data):
     data = []
-    with concurrent.futures.ThreadPoolExecutor(max_workers=20) as executor:
+    with concurrent.futures.ThreadPoolExecutor(max_workers=50) as executor:
         results = list(executor.map(fetch_redirect_url, preprocessed_data))
     
     for item in results:
