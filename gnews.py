@@ -18,9 +18,9 @@ def timed(fnc):
     return wrapper
 
 
-def get_predata(topic, curr_interest):
+def get_predata(queryString):
     gn = GoogleNews()
-    s = gn.search(f'{topic} {curr_interest}', when='24h')
+    s = gn.search(f'{queryString}', when='24h')
     preprocessed_data = []
 
     for entry in s["entries"]:
@@ -37,7 +37,7 @@ def get_predata(topic, curr_interest):
 
 # New updated links and title sped up
 @timed
-def get_data(topic, curr_interest):
-    preprocessed_data = get_predata(topic, curr_interest)
+def get_data(queryString):
+    preprocessed_data = get_predata(queryString)
     return main(preprocessed_data)
 
