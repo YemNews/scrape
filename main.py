@@ -28,9 +28,9 @@ async def scrape(url: str):
         return "SCRAPER TIMEOUT"
 
 
-@app.get("/items/")
-async def get_item(title: str, interests: List[str] = Query(...)):
-    return assign_interest(title, interests)
+# @app.get("/items/")
+# async def get_item(title: str, interests: List[str] = Query(...)):
+#     return assign_interest(title, interests)
 
 
 if __name__ == "__main__":
