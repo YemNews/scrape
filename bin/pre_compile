@@ -1,2 +1,4 @@
+#!/bin/sh
+
 echo "-----> Installing desired versions..."
 pip install setuptools==56.0.0
