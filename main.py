@@ -1,10 +1,8 @@
 import uvicorn
 import asyncio
-from fastapi import FastAPI, Query
+from fastapi import FastAPI
 from gnews import get_data
 from singlescrape import single_scrape
-from similarity import assign_interest
-from typing import List
 
 app = FastAPI()
 

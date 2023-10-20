@@ -24,7 +24,6 @@ async def single_scrape(link):
         }
 
         json_response.append(curr_article)
-        print(json_response)
         logger.info(f"Link scraped: {article.title}")
 
     except Exception as e:
