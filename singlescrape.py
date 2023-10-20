@@ -1,7 +1,7 @@
 
 import logging
 
-import updatedscrapelib.newspaper as legendscrape
+import updatedscrape.newspaper as legendscrape
 
 logging.basicConfig(
     filename="mylogs.log", format="%(asctime)s %(message)s", filemode="w"
