@@ -1,5 +1,6 @@
 
 import logging
+
 import updatedscrapelib.newspaper as legendscrape
 
 logging.basicConfig(
