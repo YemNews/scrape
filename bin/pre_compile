@@ -1,5 +1,4 @@
 #!/bin/sh
 
-echo "-----> Activating virtual environment and installing desired versions..."
-source $BUILD_DIR/.heroku/python/bin/activate
-pip install setuptools==56.0.0
+echo "-----> Installing desired versions using direct Python call..."
+$BUILD_DIR/.heroku/python/bin/python -m pip install setuptools==56.0.0
