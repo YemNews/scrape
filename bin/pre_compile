@@ -1,6 +1,0 @@
-#!/bin/sh
-
-echo "-----> Listing directories to determine paths..."
-ls $BUILD_DIR/.heroku/
-ls $BUILD_DIR/.heroku/python/
-ls $BUILD_DIR/.heroku/python/bin/
