@@ -1,7 +1,6 @@
-import asyncio
+
 import logging
-import requests
-import newspaper
+import updatedscrapelib.newspaper as legendscrape
 
 logging.basicConfig(
     filename="mylogs.log", format="%(asctime)s %(message)s", filemode="w"
@@ -13,7 +12,7 @@ logger.setLevel(logging.DEBUG)
 async def single_scrape(link):
     json_response = []
     try:
-        article = newspaper.Article(url=link)
+        article = legendscrape.Article(url=link)
         article.download()
         article.parse()  # This line will calculate the summary and keywords
 

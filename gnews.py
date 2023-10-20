@@ -1,4 +1,4 @@
-from pygooglenews import GoogleNews
+from customscrape import GoogleNews
 from langdetect import detect
 from tryquickfetch import main
 
@@ -32,7 +32,7 @@ def get_predata(queryString):
             "title": entry["title"],
             "link": entry["link"],
             "published": entry["published"],
-            "source": entry["source"]["title"],
+            "source": entry["source"],
         }
         if detect(item["title"]) == "en":
             preprocessed_data.append(item)
