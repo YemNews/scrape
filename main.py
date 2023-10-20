@@ -34,4 +34,4 @@ async def get_item(title: str, interests: List[str] = Query(...)):
 
 
 if __name__ == "__main__":
-    uvicorn.run("appfast:app")
+    uvicorn.run("main:app")
