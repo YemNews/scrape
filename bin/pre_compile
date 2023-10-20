@@ -1,4 +1,6 @@
 #!/bin/sh
 
-echo "-----> Installing desired versions using direct Python call..."
-$BUILD_DIR/.heroku/python/bin/python -m pip install setuptools==56.0.0
+echo "-----> Listing directories to determine paths..."
+ls $BUILD_DIR/.heroku/
+ls $BUILD_DIR/.heroku/python/
+ls $BUILD_DIR/.heroku/python/bin/
