@@ -1,1 +1,4 @@
-2023-10-20 21:06:27,963 Using selector: KqueueSelector
+2023-10-22 21:25:38,344 Using selector: KqueueSelector
+2023-10-22 21:25:55,259 Starting new HTTPS connection (1): www.mtdemocrat.com:443
+2023-10-22 21:25:56,211 https://www.mtdemocrat.com:443 "GET /news/state/california-technical-worker-allegedly-fired-for-refusing-to-join-union/article_7a46294b-2cb5-5f8b-aad8-65add180b6f7.html HTTP/1.1" 200 128854
+2023-10-22 21:25:57,025 Link scraped: California technical worker allegedly fired for refusing to join union

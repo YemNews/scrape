@@ -1,11 +1,20 @@
 import uvicorn
 import asyncio
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from gnews import get_data
 from singlescrape import single_scrape
 
 app = FastAPI()
+origins = ["*"]
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all methods or be specific e.g., ["GET", "POST"]
+    allow_headers=["*"],  # Allow all headers or be specific e.g., ["Content-Type"]
+)
 
 @app.get("/")
 async def root():
