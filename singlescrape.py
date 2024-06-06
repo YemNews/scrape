@@ -15,13 +15,13 @@ async def single_scrape(link):
     try:
         article = legendscrape.Article(url=link)
         article.download()
-        article.parse()  # This line will calculate the summary and keywords
+        article.parse()
 
         curr_article = {
             "title": article.title,
             "text": article.text,
-            "summary": article.summary,  # This line will get the summary
-            "keywords": article.keywords,  # This line will get the keywords
+            "publishedDate": article.publish_date,
+            "image": article.top_image,
         }
 
         json_response.append(curr_article)
